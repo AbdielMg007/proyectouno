@@ -3,11 +3,14 @@ package com.mg.proyectouno.model.entities
 import java.io.Serializable
 
 
-data class Animal (var type: String,
-    var name: String,
-    var photo: Int,
-    var age: Int,
-    var note: String
+data class Animal (
+    var id: Int,
+    var nombre: String,
+    var edad: Int,
+    var sexo: Boolean,
+    var foto: String,
+    var notas: String
+
 ): Serializable
 
 

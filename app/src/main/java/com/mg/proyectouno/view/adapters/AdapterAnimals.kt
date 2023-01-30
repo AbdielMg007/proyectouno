@@ -3,9 +3,11 @@ package com.mg.proyectouno.view.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.mg.proyectouno.R
 import com.mg.proyectouno.databinding.AnimalsCardBinding
 import com.mg.proyectouno.helpers.AnimalClick
 import com.mg.proyectouno.model.entities.Animal
+import com.squareup.picasso.Picasso
 
 class AdapterAnimals(private var animal: ArrayList<Animal>, private val AnimalClick: AnimalClick) : RecyclerView.Adapter<AdapterAnimals.AnimalViewHolder>() {
 
@@ -27,8 +29,12 @@ class AdapterAnimals(private var animal: ArrayList<Animal>, private val AnimalCl
 
     class AnimalViewHolder(val binding: AnimalsCardBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(animal: Animal) {
-            binding.itemName.text = animal.name
-            animal.photo.let { binding.itemImage.setImageResource(it) }
+            binding.itemName.text = animal.nombre
+            Picasso.get()
+                .load(animal.foto)
+                .placeholder(R.drawable.perro1)
+                .error(R.drawable.gato)
+                .into(binding.itemImage)
         }
     }
 
