@@ -1,4 +1,4 @@
-package com.mg.proyectouno.network
+package com.mg.proyectouno.model.network
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

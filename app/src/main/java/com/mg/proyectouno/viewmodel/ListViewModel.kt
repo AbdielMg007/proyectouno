@@ -1,12 +1,9 @@
 package com.mg.proyectouno.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.mg.proyectouno.model.entities.Animal
-import com.mg.proyectouno.model.repository.AnimalData
-import com.mg.proyectouno.network.ApiDbClient
+import com.mg.proyectouno.model.network.ApiDbClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

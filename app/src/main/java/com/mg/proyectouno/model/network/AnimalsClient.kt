@@ -1,4 +1,4 @@
-package com.mg.proyectouno.network
+package com.mg.proyectouno.model.network
 
 import com.mg.proyectouno.model.entities.CallAnimal
 import retrofit2.Call
