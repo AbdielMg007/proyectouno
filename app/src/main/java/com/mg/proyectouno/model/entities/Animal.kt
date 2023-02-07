@@ -9,7 +9,9 @@ data class Animal (
     var edad: Int,
     var sexo: Boolean,
     var foto: String,
-    var notas: String
+    var notas: String,
+    var latitud: Double,
+    var longitud: Double
 
 ): Serializable
 

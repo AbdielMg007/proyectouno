@@ -7,7 +7,7 @@
 
         <bitmap
             android:gravity="center"
-            android:src="@drawable/perro"
+            android:src="@drawable/error"
         />
     </item>
 </layer-list>

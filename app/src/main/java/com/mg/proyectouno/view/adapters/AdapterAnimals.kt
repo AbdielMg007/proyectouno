@@ -32,8 +32,8 @@ class AdapterAnimals(private var animal: ArrayList<Animal>, private val AnimalCl
             binding.itemName.text = animal.nombre
             Picasso.get()
                 .load(animal.foto)
-                .placeholder(R.drawable.perro1)
-                .error(R.drawable.gato)
+                .placeholder(R.drawable.error)
+                .error(R.drawable.error)
                 .into(binding.itemImage)
         }
     }

@@ -1,6 +1,7 @@
 package com.mg.proyectouno.view.activities
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Insets.add
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
@@ -8,6 +9,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
+import com.google.firebase.auth.FirebaseAuth
 import com.mg.proyectouno.R
 import com.mg.proyectouno.databinding.ActivityMainBinding
 import com.mg.proyectouno.view.fragments.ListFragment
@@ -27,10 +29,11 @@ class MainActivity : AppCompatActivity() {
         septup()
     }
     fun septup(){
+        val currentUser = FirebaseAuth.getInstance().currentUser
         val cm = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
         val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
-        if (isConnected) {
+        if (isConnected && currentUser != null) {
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
                 add(R.id.fragmentContainerView, ListFragment())

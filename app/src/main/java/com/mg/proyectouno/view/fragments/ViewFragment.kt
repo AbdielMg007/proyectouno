@@ -1,10 +1,12 @@
 package com.mg.proyectouno.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.mg.proyectouno.R
 import com.mg.proyectouno.databinding.FragmentViewBinding
 import com.mg.proyectouno.model.entities.Animal
@@ -19,6 +21,8 @@ class ViewFragment : Fragment(R.layout.fragment_view) {
     private var sexo: String? = "false"
     private var foto: String? = "foto"
     private var nota: String? = "Note"
+    private var latitud: String? = "latitud"
+    private var longitud: String? = "longitud"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +32,8 @@ class ViewFragment : Fragment(R.layout.fragment_view) {
         sexo = requireArguments().getString(SEX)
         foto = requireArguments().getString(PHOTO)
         nota = requireArguments().getString(NOTE)
+        latitud = requireArguments().getString(LATITUD)
+        longitud = requireArguments().getString(LONGITUD)
 
     }
 
@@ -44,12 +50,18 @@ class ViewFragment : Fragment(R.layout.fragment_view) {
         binding.tvNote.text = nota
         Picasso.get()
             .load(foto)
-            .placeholder(R.drawable.perro1)
-            .error(R.drawable.gato)
+            .placeholder(R.drawable.error)
+            .error(R.drawable.error)
             .into(binding.iPhoto)
 
         binding.toolbarReturned.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
+        }
+        binding.cardViewLocation.setOnClickListener {
+            requireActivity().supportFragmentManager.commit {
+                replace(R.id.fragmentContainerView, MapsFragment.newPass(nombre,latitud,longitud))
+                addToBackStack(null)
+            }
         }
     }
 
@@ -59,12 +71,15 @@ class ViewFragment : Fragment(R.layout.fragment_view) {
         private const val SEX = "false"
         private const val PHOTO = "foto"
         private const val NOTE = "Note"
+        private const val LATITUD = "Latitud"
+        private const val LONGITUD = "Longitud"
 
         fun newInstance(animals: Animal) = ViewFragment().apply {
             arguments = bundleOf(NAME to animals.nombre, AGE to animals.edad.toString(), SEX to animals.sexo.toString(),
-                PHOTO to animals.foto, NOTE to animals.notas)
+                PHOTO to animals.foto, NOTE to animals.notas, LATITUD to animals.latitud.toString(), LONGITUD to animals.longitud.toString())
         }
 
     }
+
 }
 
